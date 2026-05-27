@@ -1,5 +1,5 @@
 {% set name = "overviewpy" %}
-{% set version = "0.1.1" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/overviewpy-{{ version }}.tar.gz
-  sha256: 8fe24e3ef028983eebc930d0eb8e54f110c57865b1219a1422c20c32963360fe
+  sha256: 2b408440d272162d3ce9d2d82bae2005f6370dcfed3d0b24a4a047079a935d10
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
