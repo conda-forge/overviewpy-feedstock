@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: overviewpy
+  version: "0.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/overviewpy-${{ version }}.tar.gz
+  sha256: 2b408440d272162d3ce9d2d82bae2005f6370dcfed3d0b24a4a047079a935d10
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - matplotlib-base >=3.7.2
+    - pandas >=2.0.3
+    - jinja2 >=3.1.2
+
+tests:
+  - python:
+      imports:
+        - overviewpy
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+
+about:
+  summary: Easily Extracting Information About Your Data
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/cosimameyer/overviewpy
+  documentation: https://cosimameyer.github.io/overviewpy/
+
+extra:
+  recipe-maintainers:
+    - thewchan
